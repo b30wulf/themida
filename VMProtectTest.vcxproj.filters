@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="xed">
+      <UniqueIdentifier>{80af6e34-bd16-4b7a-80f8-c1e117331d10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stream">
+      <UniqueIdentifier>{2b4073a1-8820-4b4e-a4c0-89ee9b82fb27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vmp">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="themida">
+      <UniqueIdentifier>{0db33054-58aa-42b4-acb7-04b475db826d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cfg">
+      <UniqueIdentifier>{c8d517cf-9d46-4946-9494-5724045ba408}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="triton">
+      <UniqueIdentifier>{cbdcc61a-5528-401b-a997-2f2f6c992e28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="themida\ir">
+      <UniqueIdentifier>{4a19d414-78b7-462f-8410-10691d5d15aa}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="x86_instruction.hpp">
+      <Filter>xed</Filter>
+    </ClInclude>
+    <ClInclude Include="x86_operand.hpp">
+      <Filter>xed</Filter>
+    </ClInclude>
+    <ClInclude Include="x86_register.hpp">
+      <Filter>xed</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractStream.hpp">
+      <Filter>stream</Filter>
+    </ClInclude>
+    <ClInclude Include="ProcessStream.hpp">
+      <Filter>stream</Filter>
+    </ClInclude>
+    <ClInclude Include="VMProtectAnalyzer.hpp">
+      <Filter>vmp</Filter>
+    </ClInclude>
+    <ClInclude Include="ThemidaAnalyzer.hpp">
+      <Filter>themida</Filter>
+    </ClInclude>
+    <ClInclude Include="CFG.hpp">
+      <Filter>cfg</Filter>
+    </ClInclude>
+    <ClInclude Include="tritonhelper.hpp">
+      <Filter>triton</Filter>
+    </ClInclude>
+    <ClInclude Include="ThemidaIR.hpp">
+      <Filter>themida\ir</Filter>
+    </ClInclude>
+    <ClInclude Include="Statement.hpp">
+      <Filter>themida\ir</Filter>
+    </ClInclude>
+    <ClInclude Include="Label.hpp">
+      <Filter>themida\ir</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicBlock.hpp">
+      <Filter>themida\ir</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="pch.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="x86_instruction.cpp">
+      <Filter>xed</Filter>
+    </ClCompile>
+    <ClCompile Include="x86_operand.cpp">
+      <Filter>xed</Filter>
+    </ClCompile>
+    <ClCompile Include="x86_register.cpp">
+      <Filter>xed</Filter>
+    </ClCompile>
+    <ClCompile Include="AbstractStream.cpp">
+      <Filter>stream</Filter>
+    </ClCompile>
+    <ClCompile Include="ProcessStream.cpp">
+      <Filter>stream</Filter>
+    </ClCompile>
+    <ClCompile Include="VMProtectAnalyzer.cpp">
+      <Filter>vmp</Filter>
+    </ClCompile>
+    <ClCompile Include="ThemidaAnalyzer.cpp">
+      <Filter>themida</Filter>
+    </ClCompile>
+    <ClCompile Include="CFG.cpp">
+      <Filter>cfg</Filter>
+    </ClCompile>
+    <ClCompile Include="tritonhelper.cpp">
+      <Filter>triton</Filter>
+    </ClCompile>
+    <ClCompile Include="ThemidaIR.cpp">
+      <Filter>themida\ir</Filter>
+    </ClCompile>
+    <ClCompile Include="Statement.cpp">
+      <Filter>themida\ir</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="todo.txt" />
+    <Text Include="devirtualizeme_tmd_2.4.6.0_fish32.exe-40CA4A.txt" />
+  </ItemGroup>
+</Project>

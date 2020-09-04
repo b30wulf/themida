@@ -1,0 +1,23 @@
+deobfuscation
+
+jcc detection
+
+jcc internal:
+	mov byte ptr [ebp+jcc_off],0x0			<- log all static write?
+	local_reg = load_eflags()				<- check if reg is eflags maybe?
+	if condition_is_met(local_reg):			<- check if reg affects path?????
+		mov byte ptr [ebp+jcc_off],0x1		<- log if it actually writes jcc_off????
+
+	if ebp+jcc_off is true:					<- check if static write affects path???
+		bytecode += arg
+	else
+		bytecode += 13
+
+condition:
+	0x3ea3266: push ebx
+	0x3ea3267: and ebx, 0x40
+	0x3ea326d: je 0x3ea3291
+	0x3ea327f: mov eax, ebp
+	0x3ea3281: add eax, 0xa
+	0x3ea328e: mov byte ptr [eax], 1
+	0x3ea329d: pop ebx
