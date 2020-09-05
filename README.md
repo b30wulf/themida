@@ -18,3 +18,7 @@ todo:
  IR -> call?
  
  compile to x86 somehow
+
+ esp/rsp is output
+ 
+ support dolphin
