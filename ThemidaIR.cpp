@@ -190,9 +190,15 @@ namespace IR
 		return stream;
 	}
 
+
+	// i suck tho :'(
 	std::shared_ptr<Expression> simplify_expression(const std::shared_ptr<Expression> &expression)
 	{
-		if (expression->get_type() == IR::expr_binary_operation)
+		if (expression->get_type() == IR::expr_unary_operation)
+		{
+			expression->set_operand(0, simplify_expression(expression->get_operand(0)));
+		}
+		else if (expression->get_type() == IR::expr_binary_operation)
 		{
 			std::shared_ptr<IR::BinaryOperation> binary_op = std::dynamic_pointer_cast<IR::BinaryOperation>(expression);
 			if (binary_op->get_binary_type() == IR::binary_op::add
@@ -275,6 +281,42 @@ namespace IR
 							triton::sint64 value1 = std::dynamic_pointer_cast<IR::Immediate>(imm_node_1)->get_value();
 							return std::make_shared<IR::Xor>(rest_of_node, std::make_shared<IR::Immediate>(value0 ^ value1));
 						}
+					}
+				}
+
+				// x ^ x -> 0
+				auto lhs = binary_op->get_operand(0);
+				auto rhs = binary_op->get_operand(1);
+				if (lhs == rhs)
+				{
+					return std::make_shared<IR::Immediate>(0);
+				}
+
+				// xor(xor(x,y), x) -> y
+				if (lhs->get_type() == IR::expr_binary_operation)
+				{
+					std::shared_ptr<IR::BinaryOperation> lhs_bin_op = std::dynamic_pointer_cast<IR::BinaryOperation>(lhs);
+					if (lhs_bin_op->get_binary_type() == IR::binary_op::xor_)
+					{
+						if (lhs_bin_op->get_operand(0) == rhs)
+							return lhs_bin_op->get_operand(1);
+						else if (lhs_bin_op->get_operand(1) == rhs)
+							return lhs_bin_op->get_operand(0);
+					}
+				}
+
+				auto _save = lhs;
+				lhs = rhs;
+				rhs = _save;
+				if (lhs->get_type() == IR::expr_binary_operation)
+				{
+					std::shared_ptr<IR::BinaryOperation> lhs_bin_op = std::dynamic_pointer_cast<IR::BinaryOperation>(lhs);
+					if (lhs_bin_op->get_binary_type() == IR::binary_op::xor_)
+					{
+						if (lhs_bin_op->get_operand(0) == rhs)
+							return lhs_bin_op->get_operand(1);
+						else if (lhs_bin_op->get_operand(1) == rhs)
+							return lhs_bin_op->get_operand(0);
 					}
 				}
 			}

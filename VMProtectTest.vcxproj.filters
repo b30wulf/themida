@@ -31,6 +31,9 @@
     <Filter Include="themida\ir">
       <UniqueIdentifier>{4a19d414-78b7-462f-8410-10691d5d15aa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="themida\analyzer">
+      <UniqueIdentifier>{e24450ca-ad94-417c-bcfc-df08ef976052}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -54,9 +57,6 @@
     <ClInclude Include="VMProtectAnalyzer.hpp">
       <Filter>vmp</Filter>
     </ClInclude>
-    <ClInclude Include="ThemidaAnalyzer.hpp">
-      <Filter>themida</Filter>
-    </ClInclude>
     <ClInclude Include="CFG.hpp">
       <Filter>cfg</Filter>
     </ClInclude>
@@ -74,6 +74,12 @@
     </ClInclude>
     <ClInclude Include="BasicBlock.hpp">
       <Filter>themida\ir</Filter>
+    </ClInclude>
+    <ClInclude Include="simplification.hpp">
+      <Filter>themida</Filter>
+    </ClInclude>
+    <ClInclude Include="ThemidaAnalyzer.hpp">
+      <Filter>themida\analyzer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -101,9 +107,6 @@
     <ClCompile Include="VMProtectAnalyzer.cpp">
       <Filter>vmp</Filter>
     </ClCompile>
-    <ClCompile Include="ThemidaAnalyzer.cpp">
-      <Filter>themida</Filter>
-    </ClCompile>
     <ClCompile Include="CFG.cpp">
       <Filter>cfg</Filter>
     </ClCompile>
@@ -116,9 +119,19 @@
     <ClCompile Include="Statement.cpp">
       <Filter>themida\ir</Filter>
     </ClCompile>
+    <ClCompile Include="simplification.cpp">
+      <Filter>themida</Filter>
+    </ClCompile>
+    <ClCompile Include="ThemidaAnalyzer.cpp">
+      <Filter>themida\analyzer</Filter>
+    </ClCompile>
+    <ClCompile Include="vmenter.cpp">
+      <Filter>themida\analyzer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="todo.txt" />
     <Text Include="devirtualizeme_tmd_2.4.6.0_fish32.exe-40CA4A.txt" />
+    <Text Include="devirtualizeme_tmd_2.4.6.0_tiger64.exe-140001D37.txt" />
   </ItemGroup>
 </Project>

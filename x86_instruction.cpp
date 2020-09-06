@@ -110,7 +110,7 @@ void x86_instruction::get_read_written_registers(std::vector<x86_register>* read
 			throw std::invalid_argument(ss.str());
 		}
 
-		if (targetReg != XED_REG_STACKPUSH && targetReg != XED_REG_INVALID)
+		if (!targetReg.is_pseudo() && targetReg.is_valid())
 		{
 			if (hasRead)
 				read_registers->push_back(targetReg);
@@ -128,9 +128,9 @@ void x86_instruction::get_read_written_registers(std::vector<x86_register>* read
 		const x86_register indexReg = this->get_index_register(i);
 		const x86_register segReg = this->get_segment_register(i);
 
-		if (baseReg)	read_registers->push_back(baseReg);
-		if (indexReg)	read_registers->push_back(indexReg);
-		if (segReg)		read_registers->push_back(segReg);
+		if (baseReg.is_valid() && !baseReg.is_pseudo())		read_registers->push_back(baseReg);
+		if (indexReg.is_valid() && !indexReg.is_pseudo())	read_registers->push_back(indexReg);
+		if (segReg.is_valid() && !segReg.is_pseudo())		read_registers->push_back(segReg);
 	}
 }
 std::vector<x86_register> x86_instruction::get_read_registers() const

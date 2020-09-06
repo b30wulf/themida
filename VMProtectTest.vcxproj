@@ -168,6 +168,7 @@
     <ClInclude Include="Label.hpp" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="ProcessStream.hpp" />
+    <ClInclude Include="simplification.hpp" />
     <ClInclude Include="Statement.hpp" />
     <ClInclude Include="ThemidaAnalyzer.hpp" />
     <ClInclude Include="ThemidaIR.hpp" />
@@ -188,10 +189,12 @@
     </ClCompile>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ProcessStream.cpp" />
+    <ClCompile Include="simplification.cpp" />
     <ClCompile Include="Statement.cpp" />
     <ClCompile Include="ThemidaAnalyzer.cpp" />
     <ClCompile Include="ThemidaIR.cpp" />
     <ClCompile Include="tritonhelper.cpp" />
+    <ClCompile Include="vmenter.cpp" />
     <ClCompile Include="VMProtectAnalyzer.cpp" />
     <ClCompile Include="x86_instruction.cpp" />
     <ClCompile Include="x86_operand.cpp" />
@@ -199,6 +202,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="devirtualizeme_tmd_2.4.6.0_fish32.exe-40CA4A.txt" />
+    <Text Include="devirtualizeme_tmd_2.4.6.0_tiger64.exe-140001D37.txt" />
     <Text Include="todo.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

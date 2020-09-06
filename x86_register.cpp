@@ -2,7 +2,7 @@
 
 #include "x86_register.hpp"
 
-x86_register::x86_register(xed_reg_enum_t xed_reg) : m_capstone_reg(xed_reg)
+x86_register::x86_register(xed_reg_enum_t xed_reg) : m_xed_reg(xed_reg)
 {
 }
 x86_register::~x86_register()
@@ -15,7 +15,7 @@ bool x86_register::is_gpr() const
 }
 bool x86_register::is_low_gpr() const
 {
-	switch (this->m_capstone_reg)
+	switch (this->m_xed_reg)
 	{
 		case XED_REG_AL:
 		case XED_REG_CL:
@@ -41,7 +41,7 @@ bool x86_register::is_low_gpr() const
 }
 bool x86_register::is_high_gpr() const
 {
-	switch (this->m_capstone_reg)
+	switch (this->m_xed_reg)
 	{
 		case XED_REG_AL:
 		case XED_REG_CL:
@@ -67,7 +67,7 @@ bool x86_register::is_high_gpr() const
 }
 x86_register x86_register::get_gpr8_low() const
 {
-	switch (this->m_capstone_reg)
+	switch (this->m_xed_reg)
 	{
 		case XED_REG_AL:
 		case XED_REG_AH:
@@ -178,7 +178,7 @@ x86_register x86_register::get_gpr8_low() const
 }
 x86_register x86_register::get_gpr8_high() const
 {
-	switch (this->m_capstone_reg)
+	switch (this->m_xed_reg)
 	{
 		case XED_REG_AL:
 		case XED_REG_AH:
@@ -288,7 +288,7 @@ x86_register x86_register::get_gpr8_high() const
 }
 x86_register x86_register::get_gpr16() const
 {
-	switch (this->m_capstone_reg)
+	switch (this->m_xed_reg)
 	{
 		case XED_REG_AL:
 		case XED_REG_AH:
@@ -398,7 +398,7 @@ x86_register x86_register::get_gpr16() const
 }
 x86_register x86_register::get_gpr32() const
 {
-	switch (this->m_capstone_reg)
+	switch (this->m_xed_reg)
 	{
 		case XED_REG_AL:
 		case XED_REG_AH:
@@ -508,7 +508,7 @@ x86_register x86_register::get_gpr32() const
 }
 x86_register x86_register::get_gpr64() const
 {
-	switch (this->m_capstone_reg)
+	switch (this->m_xed_reg)
 	{
 		case XED_REG_AL:
 		case XED_REG_AH:
@@ -617,7 +617,12 @@ x86_register x86_register::get_gpr64() const
 	}
 }
 
+bool x86_register::is_pseudo() const
+{
+	return (XED_REG_PSEUDO_FIRST <= this->m_xed_reg && this->m_xed_reg <= XED_REG_PSEUDO_LAST)
+		|| xed_reg_enum_t_last() <= this->m_xed_reg;
+}
 bool x86_register::is_flag() const
 {
-	return XED_REG_FLAGS_FIRST <= this->m_capstone_reg && this->m_capstone_reg <= XED_REG_FLAGS_LAST;
+	return XED_REG_FLAGS_FIRST <= this->m_xed_reg && this->m_xed_reg <= XED_REG_FLAGS_LAST;
 }

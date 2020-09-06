@@ -30,6 +30,10 @@ namespace IR
 
 
 		// operators
+		operator triton::uint64() const
+		{
+			return this->m_addr;
+		}
 		bool operator==(const Label& label) const
 		{
 			return this->m_type == label.m_type

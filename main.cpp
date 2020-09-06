@@ -73,8 +73,7 @@ void devirtualizeme32(LPCTSTR processName, int argc, char* argv[])
 
 	// get address from arg
 	auto start = std::chrono::steady_clock::now();
-	ThemidaAnalyzer analyzer(triton::arch::ARCH_X86);
-	triton::uint64 start_address = 0x009BA537;
+	triton::uint64 start_address;
 	if (argc == 2)
 	{
 		start_address = std::strtol(argv[1], nullptr, 16);
@@ -88,28 +87,32 @@ void devirtualizeme32(LPCTSTR processName, int argc, char* argv[])
 
 		// tiger32
 		//start_address = 0x0040CA5A; // tiger32 white
+		//start_address = 0x9ba0d9; // tiger32 white next
 		//start_address = 0x0040C97A; // tiger32 red
 		//start_address = 0x0040C89A; // tiger32 black
+
+		// dolphin32
+		//start_address = 0x0040CA6A; // dolphin32 white
 	}
 
 	// redirect cout to file
 	char filename[1024];
-	sprintf_s(filename, 1024, "D:\\virtualmachine\\devirtualizeme\\%ls-%llX.txt", processName, start_address);
+	//sprintf_s(filename, 1024, "D:\\virtualmachine\\devirtualizeme\\%ls-%llX.txt", processName, start_address);
 	sprintf_s(filename, 1024, "%ls-%llX.txt", processName, start_address);
 	std::ofstream os(filename);
 	redirect_cout _r(os);
 
 	// work
+	ThemidaAnalyzer tmd_analyzer(triton::arch::ARCH_X86);
 	try
 	{
-		analyzer.analyze(stream, start_address);
-		analyzer.print_output();
+		tmd_analyzer.analyze(stream, start_address);
 	}
 	catch (const std::exception& ex)
 	{
-		std::cout << ex.what() << std::endl;
-		analyzer.print_output();
+		printf("ex: %s\n", ex.what());
 	}
+	tmd_analyzer.print_output();
 
 	// print execution time
 	auto end = std::chrono::steady_clock::now();
@@ -149,6 +152,7 @@ void devirtualizeme64(LPCTSTR processName, int argc, char* argv[])
 	// redirect cout to file
 	char filename[1024];
 	sprintf_s(filename, 1024, "D:\\virtualmachine\\devirtualizeme\\%ls-%llX.txt", processName, start_address);
+	sprintf_s(filename, 1024, "%ls-%llX.txt", processName, start_address);
 	std::ofstream os(filename);
 	redirect_cout _r(os);
 
@@ -181,6 +185,7 @@ int main(int argc, char *argv[])
 	{
 		devirtualizeme32(L"devirtualizeme_tmd_2.4.6.0_fish32.exe", argc, argv);
 		//devirtualizeme32(L"devirtualizeme_tmd_2.4.6.0_tiger32.exe", argc, argv);
+		//devirtualizeme32(L"devirtualizeme_tmd_2.4.6.0_dolphin32.exe", argc, argv);
 
 		//devirtualizeme64(L"devirtualizeme_tmd_2.4.6.0_tiger64.exe", argc, argv);
 		//devirtualizeme64(L"devirtualizeme_tmd_2.4.6.0_fish64.exe", argc, argv);

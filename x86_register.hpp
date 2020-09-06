@@ -8,7 +8,7 @@ public:
 
 	bool is_valid() const
 	{
-		return this->m_capstone_reg != XED_REG_INVALID;
+		return this->m_xed_reg != XED_REG_INVALID;
 	}
 
 	// operators
@@ -18,37 +18,37 @@ public:
 	}
 	operator xed_reg_enum_t() const
 	{
-		return this->m_capstone_reg;
+		return this->m_xed_reg;
 	}
 	bool operator==(const x86_register& cmp) const
 	{
-		return this->m_capstone_reg == cmp.m_capstone_reg;
+		return this->m_xed_reg == cmp.m_xed_reg;
 	}
 	bool operator==(xed_reg_enum_t cmp) const
 	{
-		return this->m_capstone_reg == cmp;
+		return this->m_xed_reg == cmp;
 	}
 	bool operator!=(const x86_register& cmp) const
 	{
-		return this->m_capstone_reg != cmp.m_capstone_reg;
+		return this->m_xed_reg != cmp.m_xed_reg;
 	}
 	bool operator!=(xed_reg_enum_t cmp) const
 	{
-		return this->m_capstone_reg != cmp;
+		return this->m_xed_reg != cmp;
 	}
-	bool operator<(x86_register cmp) const
+	bool operator<(const x86_register& cmp) const
 	{
-		return this->m_capstone_reg < cmp.m_capstone_reg;
+		return this->m_xed_reg < cmp.m_xed_reg;
 	}
 
 	// wrappers
 	const char* get_name() const
 	{
-		return xed_reg_enum_t2str(this->m_capstone_reg);
+		return xed_reg_enum_t2str(this->m_xed_reg);
 	}
 	xed_reg_class_enum_t get_class() const
 	{
-		return xed_reg_class(this->m_capstone_reg);
+		return xed_reg_class(this->m_xed_reg);
 	}
 	const char* get_class_name() const
 	{
@@ -59,23 +59,23 @@ public:
 	// Or XED_REG_INVALID if not a GPR.
 	xed_reg_class_enum_t get_gpr_class() const
 	{
-		return xed_gpr_reg_class(this->m_capstone_reg);
+		return xed_gpr_reg_class(this->m_xed_reg);
 	}
 	x86_register get_largest_enclosing_register32() const
 	{
-		return xed_get_largest_enclosing_register32(this->m_capstone_reg);
+		return xed_get_largest_enclosing_register32(this->m_xed_reg);
 	}
 	x86_register get_largest_enclosing_register() const
 	{
-		return xed_get_largest_enclosing_register(this->m_capstone_reg);
+		return xed_get_largest_enclosing_register(this->m_xed_reg);
 	}
 	xed_uint32_t get_width_bits() const
 	{
-		return xed_get_register_width_bits(this->m_capstone_reg);
+		return xed_get_register_width_bits(this->m_xed_reg);
 	}
 	xed_uint32_t get_width_bits64() const
 	{
-		return xed_get_register_width_bits64(this->m_capstone_reg);
+		return xed_get_register_width_bits64(this->m_xed_reg);
 	}
 
 	// helpers - GPR
@@ -89,8 +89,9 @@ public:
 	x86_register get_gpr64() const;		// rax, rcx, rdx, rbx
 
 	// flag
+	bool is_pseudo() const;
 	bool is_flag() const;
 
 private:
-	xed_reg_enum_t m_capstone_reg;
+	xed_reg_enum_t m_xed_reg;
 };
